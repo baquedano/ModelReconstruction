@@ -88,13 +88,14 @@ class ViewController: UIViewController {
     
     
     func uploadImages() {
+        guard let apiUrl = ProcessInfo.processInfo.environment["API_URL"] else { return }
         // setup loading ui
         self.LoadingContainer.isHidden = false
         self.activityIndicator.startAnimating()
         
+        let url = URL(string: "\(apiUrl)/uploadImages")
         
-        let url = URL(string: "http://192.168.1.182:3000/uploadImages")
-        
+        print(apiUrl)
         // generate boundary string using a unique per-app string
         let boundary = UUID().uuidString
 
